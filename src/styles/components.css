@@ -436,13 +436,14 @@
 
 .game-option {
   border-bottom: 1px solid var(--border);
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .game-option button {
   width: 100%;
   min-height: 6.5rem;
   display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  grid-template-columns: 3rem minmax(0, 1fr);
   gap: 1rem;
   align-items: center;
   padding: 1.5rem 0.25rem;
@@ -467,8 +468,27 @@
   color: #7b877f;
 }
 
-.game-option-correct button {
-  color: var(--primary-green);
+.game-option-correct {
+  color: #164c2c;
+  background: #e8f3ea;
+  border-color: #bdd7c1;
+  box-shadow: inset 4px 0 #397350;
+}
+
+.game-option-incorrect {
+  color: #6f2d25;
+  background: #faece9;
+  border-color: #e8c7c0;
+  box-shadow: inset 4px 0 #a94f42;
+}
+
+.game-option-correct button,
+.game-option-correct .option-number,
+.game-option-correct .option-response,
+.game-option-incorrect button,
+.game-option-incorrect .option-number,
+.game-option-incorrect .option-response {
+  color: inherit;
 }
 
 .option-number {
@@ -483,23 +503,8 @@
   line-height: 1.35;
 }
 
-.answer-state {
-  padding: 0.4rem 0.65rem;
-  color: var(--text);
-  background: var(--lime);
-  border-radius: 999px;
-  font-size: 0.68rem;
-  font-weight: 850;
-  white-space: nowrap;
-}
-
-.game-option-incorrect .answer-state {
-  color: #713726;
-  background: #f4ddd1;
-}
-
 .option-response {
-  margin: -0.5rem 0 1.5rem 4.25rem;
+  margin: -0.5rem 1.25rem 1.5rem 4.25rem;
   color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.6;
@@ -652,11 +657,6 @@
 
   .game-option button {
     grid-template-columns: 2rem minmax(0, 1fr);
-  }
-
-  .answer-state {
-    grid-column: 2;
-    width: fit-content;
   }
 
   .option-response {

@@ -26,11 +26,25 @@ describe('TruthGame', () => {
   it('shows the 30 km correction for option 1', async () => {
     const user = userEvent.setup()
     render(<TruthGame />)
+    const optionButton = screen.getByRole('button', { name: /completed a marathon/i })
 
-    await user.click(screen.getByRole('button', { name: /completed a marathon/i }))
+    await user.click(optionButton)
 
     expect(screen.getAllByText(/longest run is 30 km/i)[0]).toBeVisible()
-    expect(screen.getByRole('button', { name: /completed a marathon/i })).toBeDisabled()
+    expect(optionButton).toBeDisabled()
+    expect(optionButton.closest('.game-option')).toHaveClass('game-option-incorrect')
+    expect(optionButton.closest('.game-option').querySelector('.answer-state')).not.toBeInTheDocument()
+  })
+
+  it('shades the correct option without adding an answer-state badge', async () => {
+    const user = userEvent.setup()
+    render(<TruthGame />)
+    const optionButton = screen.getByRole('button', { name: /cat has a cheetah coat/i })
+
+    await user.click(optionButton)
+
+    expect(optionButton.closest('.game-option')).toHaveClass('game-option-correct')
+    expect(optionButton.closest('.game-option').querySelector('.answer-state')).not.toBeInTheDocument()
   })
 
   it('shows the 4.0 correction for option 2', async () => {

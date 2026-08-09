@@ -87,8 +87,6 @@ export default function TruthGame() {
                   >
                     <span className="option-number" aria-hidden="true">0{option.id}</span>
                     <span>{option.statement}</span>
-                    {state === 'correct' && <span className="answer-state">Correct ✓</span>}
-                    {state === 'incorrect' && <span className="answer-state">Not this one ×</span>}
                   </button>
                   {revealResponse && (
                     <p className="option-response" id={`option-${option.id}-response`}>
