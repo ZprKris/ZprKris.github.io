@@ -120,7 +120,7 @@ describe('TruthGame', () => {
     render(<TruthGame />)
     observerCallback([{ isIntersecting: true, intersectionRatio: 0.5 }])
 
-    expect(observe).toHaveBeenCalledWith(screen.getByRole('region', { name: /one truth/i }))
+    expect(observe).toHaveBeenCalledWith(screen.getByRole('region', { name: /play/i }))
     expect(trackGameViewed).toHaveBeenCalledOnce()
     expect(disconnect).toHaveBeenCalled()
     vi.unstubAllGlobals()
