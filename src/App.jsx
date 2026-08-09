@@ -2,6 +2,7 @@ import ContactFooter from './components/ContactFooter.jsx'
 import Navigation from './components/Navigation.jsx'
 import Projects from './components/Projects.jsx'
 import StoryLayout from './components/StoryLayout.jsx'
+import TruthGame from './components/TruthGame.jsx'
 import './styles/components.css'
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
       <main id="main-content" tabIndex="-1" aria-labelledby="page-title">
         <StoryLayout />
         <Projects />
+        <TruthGame />
       </main>
       <ContactFooter />
     </>
