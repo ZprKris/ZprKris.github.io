@@ -950,7 +950,7 @@
     grid-template-columns: 2rem minmax(0, 1fr);
   }
 
-  .option-response {
+  .game-option .option-response {
     margin-left: 3.25rem;
   }
 
