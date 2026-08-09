@@ -86,33 +86,40 @@ export default function TruthGame() {
         </div>
 
         <div className="game-board">
-          <div className="game-options" role="group" aria-label={game.prompt}>
-            {game.options.map((option) => {
-              const wasSelected = selectedOptions.has(option.id)
-              const revealResponse = wasSelected || isComplete
-              const state = wasSelected
-                ? option.isCorrect ? 'correct' : 'incorrect'
-                : isComplete ? 'locked' : 'idle'
+          <div className="game-options-layout">
+            <div className="game-options" role="group" aria-label={game.prompt}>
+              {game.options.map((option) => {
+                const wasSelected = selectedOptions.has(option.id)
+                const revealResponse = wasSelected || isComplete
+                const state = wasSelected
+                  ? option.isCorrect ? 'correct' : 'incorrect'
+                  : isComplete ? 'locked' : 'idle'
 
-              return (
-                <div className={`game-option game-option-${state}`} key={option.id}>
-                  <button
-                    type="button"
-                    onClick={() => chooseOption(option)}
-                    disabled={isComplete || wasSelected}
-                    aria-describedby={revealResponse ? `option-${option.id}-response` : undefined}
-                  >
-                    <span className="option-number" aria-hidden="true">0{option.id}</span>
-                    <span>{option.statement}</span>
-                  </button>
-                  {revealResponse && (
-                    <p className="option-response" id={`option-${option.id}-response`}>
-                      {option.response}
-                    </p>
-                  )}
-                </div>
-              )
-            })}
+                return (
+                  <div className={`game-option game-option-${state}`} key={option.id}>
+                    <button
+                      type="button"
+                      onClick={() => chooseOption(option)}
+                      disabled={isComplete || wasSelected}
+                      aria-describedby={revealResponse ? `option-${option.id}-response` : undefined}
+                    >
+                      <span className="option-number" aria-hidden="true">0{option.id}</span>
+                      <span>{option.statement}</span>
+                    </button>
+                    {revealResponse && (
+                      <p className="option-response" id={`option-${option.id}-response`}>
+                        {option.response}
+                      </p>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+            {isComplete && (
+              <button className="play-again" type="button" onClick={restartGame}>
+                <span>Play again</span>
+              </button>
+            )}
           </div>
 
           <div className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</div>
@@ -129,7 +136,6 @@ export default function TruthGame() {
                 />
                 <figcaption>A dangerous apex predator.</figcaption>
               </figure>
-              <button className="play-again" type="button" onClick={restartGame}>Play again</button>
             </div>
           )}
         </div>
