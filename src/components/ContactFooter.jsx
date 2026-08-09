@@ -27,15 +27,6 @@ function GitHubIcon() {
   )
 }
 
-function ResumeIcon() {
-  return (
-    <svg className="footer-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M6 3.5h8l4 4V20.5H6Z" />
-      <path d="M14 3.5v4h4M9 12h6M9 15.5h6" />
-    </svg>
-  )
-}
-
 export default function ContactFooter() {
   const { contact } = portfolioData
 
@@ -50,7 +41,6 @@ export default function ContactFooter() {
               <li><a href={`mailto:${contact.email}`}><GmailIcon />Email</a></li>
               <li><a href={contact.linkedin} {...externalProps}><LinkedInIcon />LinkedIn</a></li>
               <li><a href={contact.github} {...externalProps}><GitHubIcon />GitHub</a></li>
-              <li><a href={contact.resume} target="_blank" rel="noreferrer"><ResumeIcon />Resume</a></li>
             </ul>
           </nav>
         </div>

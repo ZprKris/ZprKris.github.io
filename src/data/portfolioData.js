@@ -90,6 +90,5 @@ export const portfolioData = {
     email: 'zaporozhets.kristina@gmail.com',
     linkedin: 'http://www.linkedin.com/in/kristina-z-16412b2a7',
     github: 'https://github.com/ZprKris',
-    resume: '/resume.pdf',
   },
 }
