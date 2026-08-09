@@ -1,4 +1,3 @@
-import ttcWatchImage from '../assets/ttc-watch.png'
 import { portfolioData } from '../data/portfolioData.js'
 
 const externalProps = { target: '_blank', rel: 'noreferrer noopener' }
@@ -24,10 +23,10 @@ export default function Projects() {
             <article className="featured-project" key={project.name}>
               <div className="project-visual">
                 <img
-                  src={ttcWatchImage}
-                  alt="TTC Watch subway map and monitoring preferences interface"
-                  width="1829"
-                  height="884"
+                  src={project.image}
+                  alt={project.imageAlt}
+                  width={project.imageWidth}
+                  height={project.imageHeight}
                   loading="lazy"
                 />
               </div>

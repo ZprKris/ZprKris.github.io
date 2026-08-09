@@ -1,3 +1,5 @@
+import ttcWatchImage from '../assets/ttc-watch.png'
+
 export const portfolioData = {
   introduction: {
     name: 'Kristina Zaporozhets',
@@ -45,6 +47,10 @@ export const portfolioData = {
   projects: [
     {
       name: 'TTC Watch',
+      image: ttcWatchImage,
+      imageAlt: 'TTC Watch subway map and monitoring preferences interface',
+      imageWidth: 1829,
+      imageHeight: 884,
       tagline: 'No more shuttle-bus surprises.',
       problem: 'Service changes can turn a routine TTC trip into an unexpected delay.',
       solution: 'Email alerts for service changes affecting your selected TTC subway stations and schedule.',
