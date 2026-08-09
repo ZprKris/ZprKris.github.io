@@ -13,8 +13,8 @@ describe('portfolio links', () => {
     render(<Projects />)
 
     for (const link of [
-      screen.getByRole('link', { name: /open ttc watch/i }),
-      screen.getByRole('link', { name: /view source/i }),
+      screen.getByRole('link', { name: /live/i }),
+      screen.getByRole('link', { name: /GitHub/i }),
     ]) {
       expect(link).toHaveAttribute('target', '_blank')
       expect(link).toHaveAttribute('rel', expect.stringContaining('noopener'))

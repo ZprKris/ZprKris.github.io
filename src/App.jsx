@@ -22,6 +22,26 @@ export default function App() {
     window.localStorage.setItem(THEME_KEY, theme)
   }, [theme])
 
+  useEffect(() => {
+    document.documentElement.classList.add('reveal-js')
+
+    const revealSections = document.querySelectorAll('section')
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible')
+            obs.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.16, rootMargin: '0px 0px -10% 0px' }
+    )
+
+    revealSections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>

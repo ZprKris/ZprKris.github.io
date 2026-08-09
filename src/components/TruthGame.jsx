@@ -83,7 +83,7 @@ export default function TruthGame() {
           <h2 id="play-heading" className="section-heading">Play</h2>
           <p className="game-intro-txt">{game.prompt}</p>
           {/* <p className="eyebrow">A small intermission</p> */}
-          <h3 id="game-heading">{game.heading}</h3>
+          <h4 id="game-heading">{game.heading}</h4>
         </div>
 
         <div className="game-board">

@@ -1,4 +1,5 @@
 import { portfolioData } from '../data/portfolioData.js'
+import { GitHubIcon } from './Projects.jsx'
 
 export default function Experience() {
   return (
@@ -24,7 +25,8 @@ export default function Experience() {
               )}
               {item.projectUrl && (
                 <a className="project-link experience-project-link" href={item.projectUrl} target="_blank" rel="noreferrer noopener">
-                  View project <span aria-hidden="true">↗</span>
+                  <GitHubIcon />
+                  GitHub
                 </a>
               )}
             </li>

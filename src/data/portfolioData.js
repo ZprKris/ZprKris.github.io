@@ -13,8 +13,8 @@ export const portfolioData = {
       role: 'Global Analytics and Financial Engineer Intern',
       dates: 'May 2025–Present',
       description:
-        'Worked as part of the Infrastructure team, where I improved build, execution, and regression-test performance for a quantitative pricing library, modernized its core components using newer C++ standards, and object-oriented design practices and developed ad hoc data visualization applications.',
-      metrics: ['1.9× faster builds', '6.5× faster regression testing', '4× faster model execution'],
+        'Worked as part of the Infrastructure team, improving build speed by 1.9×, execution speed by 4×, and regression testing by 6.5× for a quantitative pricing library. Modernized its core components using newer C++ standards and object-oriented design practices, and developed ad hoc data visualization applications.',
+      // metrics: ['1.9× faster builds', '6.5× faster regression testing', '4× faster model execution'],
     },
     {
       company: 'AMD Canada and Seneca Polytechnic',

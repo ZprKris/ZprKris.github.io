@@ -1,20 +1,34 @@
 :root {
-  --background: #fffdf8;
-  --surface: #f2f8f3;
-  --text: #193328;
-  --muted: #5d7166;
-  --primary-green: #2f7654;
-  --sage: #abd3b8;
-  --lime: #dff2b5;
-  --border: #dbe9df;
-  --ivory: #f7f9ee;
+  --background: #fbfaf7;
+  --surface: #f0f0ed;
+  --text: #292d2a;
+  --muted: #666b68;
+  --primary-green: #3f7d5a;
+  --sage: #aab3ad;
+  --lime: #d6eadc;
+  --border: #dcdfdb;
+  --ivory: #fbfaf7;
   --button-green: rgba(75, 171, 123, 0.78);
   --button-green-hover: rgba(75, 171, 123, 0.96);
-  --footer-green: #4d7b63;
-  --selection: #b9dfc5;
-  --selection-text: #123d29;
-  --scrollbar: #5e9b76;
-  --scrollbar-hover: #3f7d5c;
+  --footer-green: #64756a;
+  --selection: #c8e2d0;
+  --selection-text: #24342a;
+  --scrollbar: #6f967d;
+  --scrollbar-hover: #477d5d;
+  --footer-accent: #47785c;
+  --header-background: rgba(251, 250, 247, 0.92);
+  --header-border: rgba(41, 45, 42, 0.1);
+  --footer-border: #d3d6d2;
+  --translucent-surface: rgb(240 240 237 / 88%);
+  --card-background: rgb(255 255 252 / 88%);
+  --card-inner-background: rgb(247 247 244 / 94%);
+  --subtle-surface: #eceeeb;
+  --soft-border: #d5d8d4;
+  --chip-border: #d8dbd7;
+  --mobile-plant-fade: rgb(251 250 247 / 78%);
+  --shadow-soft: rgb(38 43 40 / 7%);
+  --shadow-medium: rgb(31 35 33 / 11%);
+  --scroll-text-shadow: rgb(41 45 42 / 18%);
   --content-width: 1180px;
   --section-space: clamp(4rem, 8vw, 7rem);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -25,22 +39,36 @@
 }
 
 .theme-dark {
-  --background: #111913;
-  --surface: #17261b;
-  --text: #e5f4e8;
-  --muted: #9ab39c;
-  --primary-green: #9dd9a7;
-  --sage: #7d9e82;
-  --lime: #2f4f33;
-  --border: #2b3f37;
-  --ivory: #e5f4e8;
-  --button-green: rgba(153, 227, 160, 0.88);
-  --button-green-hover: rgba(153, 227, 160, 1);
-  --footer-green: #5ba56b;
-  --selection: #6b8f74;
-  --selection-text: #f7f9ee;
-  --scrollbar: #86c591;
-  --scrollbar-hover: #b5e3b3;
+  --background: #151617;
+  --surface: #202225;
+  --text: #f0f1ed;
+  --muted: #a9ada8;
+  --primary-green: #a8d9b5;
+  --sage: #858b87;
+  --lime: #91cda3;
+  --border: #36393d;
+  --ivory: #f7f7f2;
+  --button-green: rgba(112, 181, 135, 0.88);
+  --button-green-hover: rgba(126, 200, 151, 0.98);
+  --footer-green: #7f9f89;
+  --selection: #405949;
+  --selection-text: #f7f7f2;
+  --scrollbar: #77807a;
+  --scrollbar-hover: #a8d9b5;
+  --footer-accent: #addfb4;
+  --header-background: rgba(24, 25, 27, 0.96);
+  --header-border: rgba(255, 255, 255, 0.1);
+  --footer-border: #3a3d40;
+  --translucent-surface: rgb(32 34 37 / 88%);
+  --card-background: rgb(28 30 33 / 96%);
+  --card-inner-background: rgb(37 39 42 / 92%);
+  --subtle-surface: #27292c;
+  --soft-border: #3c3f43;
+  --chip-border: #44474b;
+  --mobile-plant-fade: rgb(21 22 23 / 82%);
+  --shadow-soft: rgb(0 0 0 / 18%);
+  --shadow-medium: rgb(0 0 0 / 28%);
+  --scroll-text-shadow: rgb(0 0 0 / 52%);
 }
 
 * {
@@ -162,33 +190,49 @@ a {
   position: sticky;
   z-index: 20;
   top: 0;
-  background: rgba(255, 253, 248, 0.92);
-  border-bottom: 1px solid rgba(219, 233, 223, 0.78);
+  background: var(--header-background);
+  border-bottom: 1px solid var(--header-border);
   backdrop-filter: blur(12px);
-}
-
-.theme-dark .site-header {
-  background: rgba(22, 38, 27, 0.96);
-  border-bottom: 1px solid rgba(74, 106, 87, 0.7);
 }
 
 .nav {
   min-height: 4.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 2rem;
 }
 
 .wordmark {
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text);
   text-decoration: none;
 }
 
-.wordmark span {
-  color: var(--primary-green);
+.wordmark-monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.04em;
+  color: var(--text);
+  font-size: 1.12rem;
+  font-weight: 850;
+  letter-spacing: -0.08em;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wordmark-k {
+  color: var(--text);
+}
+
+.wordmark-z {
+  color: var(--text);
+}
+
+.wordmark:hover .wordmark-monogram,
+.wordmark:focus-visible .wordmark-monogram {
+  transform: scale(1.12);
 }
 
 .nav-links,
@@ -215,36 +259,59 @@ a {
 
 .nav-links a:hover {
   color: var(--primary-green);
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+.nav-actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.nav-divider {
+  width: 1px;
+  height: 1.4rem;
+  flex: 0 0 1px;
+  background: var(--border);
 }
 
 .theme-toggle {
-  min-height: 2.75rem;
-  padding: 0 1rem;
-  color: var(--text);
-  background: var(--button-green);
-  border: 1px solid rgba(75, 171, 123, 0.9);
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 700;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 2.5rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: var(--primary-green);
+  background: rgb(75 171 123 / 8%);
+  border: 1px solid rgb(75 171 123 / 24%);
+  border-radius: 50%;
   cursor: pointer;
-  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.theme-toggle svg {
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .theme-toggle:hover,
 .theme-toggle:focus-visible {
-  background: var(--button-green-hover);
-  color: var(--ivory);
-  transform: translateY(-1px);
+  color: var(--text);
+  background: rgb(75 171 123 / 18%);
+  border-color: rgb(75 171 123 / 48%);
+  transform: rotate(8deg);
 }
 
 .theme-dark .theme-toggle {
-  color: #0d2414;
+  color: var(--primary-green);
 }
 
 .footer-links a:hover {
   color: var(--ivory);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .shell-intro {
@@ -299,12 +366,12 @@ h2 {
   padding-block: 2rem 1.25rem;
   color: var(--text);
   background: var(--surface);
-  border-top: 1px solid #c5d8cb;
+  border-top: 1px solid var(--footer-border);
 }
 
 .site-footer .eyebrow {
   margin: 0;
-  color: var(--primary-green);
+  color: var(--footer-accent);
 }
 
 .footer-layout {
@@ -336,13 +403,25 @@ h2 {
 }
 
 .footer-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--text);
   font-weight: 650;
   text-underline-offset: 0.25rem;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.footer-link-icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 1rem;
 }
 
 .footer-links a:hover {
   color: var(--primary-green);
+  text-decoration: none;
+  transform: translateY(-1px);
 }
 
 .privacy-note,
@@ -361,7 +440,7 @@ h2 {
   justify-content: center;
   gap: 0.35rem clamp(1.5rem, 5vw, 4rem);
   padding-top: 0.9rem;
-  border-top: 1px solid rgb(47 118 84 / 14%);
+  border-top: 1px solid var(--border);
   text-align: center;
 }
 
@@ -376,10 +455,17 @@ h2 {
 
   .nav {
     min-height: 4rem;
+    gap: 0.75rem;
+  }
+
+  .nav-actions {
+    flex: 1;
+    gap: 0.65rem;
   }
 
   .nav-links {
-    max-width: 80%;
+    max-width: none;
+    margin-left: auto;
     gap: 0.45rem 0.9rem;
     justify-content: flex-end;
   }
