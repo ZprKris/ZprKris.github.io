@@ -1,6 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import catImage from '../assets/cat.webp'
 import { portfolioData } from '../data/portfolioData.js'
+import {
+  trackGameCompleted,
+  trackGameRestarted,
+  trackGameStarted,
+  trackGameViewed,
+  trackGuessSubmitted,
+} from '../lib/gameAnalytics.js'
 
 const newRoundId = () => crypto.randomUUID()
 
@@ -10,19 +17,42 @@ export default function TruthGame() {
   const [isComplete, setIsComplete] = useState(false)
   const [roundId, setRoundId] = useState(newRoundId)
   const [announcement, setAnnouncement] = useState('')
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section || typeof IntersectionObserver === 'undefined') return undefined
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          void trackGameViewed(roundId)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.5 },
+    )
+
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [roundId])
 
   function chooseOption(option) {
     if (isComplete || selectedOptions.has(option.id)) return
 
+    if (selectedOptions.size === 0) void trackGameStarted(roundId)
+    void trackGuessSubmitted(roundId, option.id, option.isCorrect)
     setSelectedOptions((current) => new Set(current).add(option.id))
     setAnnouncement(option.response)
 
     if (option.isCorrect) {
+      void trackGameCompleted(roundId)
       setIsComplete(true)
     }
   }
 
   function restartGame() {
+    void trackGameRestarted(roundId)
     setSelectedOptions(new Set())
     setIsComplete(false)
     setRoundId(newRoundId())
@@ -30,7 +60,7 @@ export default function TruthGame() {
   }
 
   return (
-    <section className="game-section" id="play" aria-labelledby="game-heading" data-round-id={roundId}>
+    <section ref={sectionRef} className="game-section" id="play" aria-labelledby="game-heading" data-round-id={roundId}>
       <div className="container game-layout">
         <div className="game-intro">
           <p className="eyebrow">A small intermission</p>
