@@ -11,6 +11,17 @@ import {
 
 const newRoundId = () => crypto.randomUUID()
 
+function focusAndCenter(element, block) {
+  if (!element) return
+
+  element.focus({ preventScroll: true })
+  if (typeof element.scrollIntoView === 'function') {
+    const reduceMotion = typeof window.matchMedia === 'function'
+      && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    element.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block })
+  }
+}
+
 export default function TruthGame() {
   const { game } = portfolioData
   const [selectedOptions, setSelectedOptions] = useState(() => new Set())
@@ -18,6 +29,7 @@ export default function TruthGame() {
   const [roundId, setRoundId] = useState(newRoundId)
   const [announcement, setAnnouncement] = useState('')
   const sectionRef = useRef(null)
+  const catRevealRef = useRef(null)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -36,6 +48,10 @@ export default function TruthGame() {
     observer.observe(section)
     return () => observer.disconnect()
   }, [roundId])
+
+  useEffect(() => {
+    if (isComplete) focusAndCenter(catRevealRef.current, 'center')
+  }, [isComplete])
 
   function chooseOption(option) {
     if (isComplete || selectedOptions.has(option.id)) return
@@ -57,10 +73,11 @@ export default function TruthGame() {
     setIsComplete(false)
     setRoundId(newRoundId())
     setAnnouncement('New round started. Choose a statement.')
+    queueMicrotask(() => focusAndCenter(sectionRef.current, 'start'))
   }
 
   return (
-    <section ref={sectionRef} className="game-section" id="play" aria-labelledby="game-heading" data-round-id={roundId}>
+    <section ref={sectionRef} className="game-section" id="play" aria-labelledby="game-heading" data-round-id={roundId} tabIndex="-1">
       <div className="container game-layout">
         <div className="game-intro">
           <p className="eyebrow">A small intermission</p>
@@ -102,7 +119,7 @@ export default function TruthGame() {
 
           {isComplete && (
             <div className="cat-reveal">
-              <figure>
+              <figure ref={catRevealRef} tabIndex="-1" aria-label="Cat reveal">
                 <img
                   src={catImage}
                   alt="Kristina’s Bengal cat relaxing between two computer monitors"

@@ -40,11 +40,15 @@ describe('TruthGame', () => {
     const user = userEvent.setup()
     render(<TruthGame />)
     const optionButton = screen.getByRole('button', { name: /cat has a cheetah coat/i })
+    const scrollIntoView = vi.fn()
+    Element.prototype.scrollIntoView = scrollIntoView
 
     await user.click(optionButton)
 
     expect(optionButton.closest('.game-option')).toHaveClass('game-option-correct')
     expect(optionButton.closest('.game-option').querySelector('.answer-state')).not.toBeInTheDocument()
+    expect(screen.getByRole('figure', { name: /cat reveal/i })).toHaveFocus()
+    expect(scrollIntoView).toHaveBeenCalledWith(expect.objectContaining({ block: 'center' }))
   })
 
   it('shows the 4.0 correction for option 2', async () => {
@@ -77,13 +81,18 @@ describe('TruthGame', () => {
     const user = userEvent.setup()
     const { container } = render(<TruthGame />)
     const firstRoundId = container.querySelector('#play').dataset.roundId
+    const scrollIntoView = vi.fn()
+    Element.prototype.scrollIntoView = scrollIntoView
 
     await user.click(screen.getByRole('button', { name: /cat has a cheetah coat/i }))
+    scrollIntoView.mockClear()
     await user.click(screen.getByRole('button', { name: /play again/i }))
 
     expect(screen.queryByRole('img', { name: /bengal cat/i })).not.toBeInTheDocument()
     expect(screen.queryByText(/longest run is 30 km/i)).not.toBeInTheDocument()
     expect(container.querySelector('#play').dataset.roundId).not.toBe(firstRoundId)
+    expect(container.querySelector('#play')).toHaveFocus()
+    expect(scrollIntoView).toHaveBeenCalledWith(expect.objectContaining({ block: 'start' }))
     expect(trackGameRestarted).toHaveBeenCalledWith(firstRoundId)
   })
 
