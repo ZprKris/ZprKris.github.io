@@ -36,7 +36,7 @@ describe('TruthGame', () => {
     expect(optionButton.closest('.game-option').querySelector('.answer-state')).not.toBeInTheDocument()
   })
 
-  it('shades the correct option without adding an answer-state badge', async () => {
+  it('replaces the options with a focused, replayable cat reveal after the correct answer', async () => {
     const user = userEvent.setup()
     render(<TruthGame />)
     const optionButton = screen.getByRole('button', { name: /cat has a cheetah coat/i })
@@ -45,9 +45,10 @@ describe('TruthGame', () => {
 
     await user.click(optionButton)
 
-    expect(optionButton.closest('.game-option')).toHaveClass('game-option-correct')
-    expect(optionButton.closest('.game-option').querySelector('.answer-state')).not.toBeInTheDocument()
-    expect(screen.getByRole('figure', { name: /cat reveal/i })).toHaveFocus()
+    expect(screen.queryByRole('group', { name: /which statement is true/i })).not.toBeInTheDocument()
+    expect(screen.getAllByText('Correct. Meet my dangerous apex predator.')[0]).toBeVisible()
+    expect(screen.getByRole('button', { name: /correct.*play again/i })).toHaveFocus()
+    expect(screen.getByText('Play again')).toBeInTheDocument()
     expect(scrollIntoView).toHaveBeenCalledWith(expect.objectContaining({ block: 'center' }))
   })
 
@@ -60,20 +61,15 @@ describe('TruthGame', () => {
     expect(screen.getAllByText(/full 4\.0/i)[0]).toBeVisible()
   })
 
-  it('reveals the cat, caption, and every explanation for the correct option', async () => {
+  it('reveals the cat and correct message for the correct option', async () => {
     const user = userEvent.setup()
     render(<TruthGame />)
 
     await user.click(screen.getByRole('button', { name: /cat has a cheetah coat/i }))
 
     expect(screen.getByRole('img', { name: /bengal cat/i })).toBeVisible()
-    expect(screen.getByText('A dangerous apex predator.')).toBeVisible()
-    expect(screen.getByText(/longest run is 30 km/i)).toBeVisible()
-    expect(screen.getByText(/full 4\.0/i)).toBeVisible()
-    expect(screen.getAllByText(/meet my dangerous apex predator/i)[0]).toBeVisible()
-    for (const button of screen.getAllByRole('button', { name: /completed a marathon|gpa is|cat has/i })) {
-      expect(button).toBeDisabled()
-    }
+    expect(screen.getAllByText('Correct. Meet my dangerous apex predator.')[0]).toBeVisible()
+    expect(screen.queryByRole('button', { name: /completed a marathon/i })).not.toBeInTheDocument()
     expect(trackGameCompleted).toHaveBeenCalledOnce()
   })
 
@@ -86,10 +82,11 @@ describe('TruthGame', () => {
 
     await user.click(screen.getByRole('button', { name: /cat has a cheetah coat/i }))
     scrollIntoView.mockClear()
-    await user.click(screen.getByRole('button', { name: /play again/i }))
+    await user.click(screen.getByRole('button', { name: /correct.*play again/i }))
 
     expect(screen.queryByRole('img', { name: /bengal cat/i })).not.toBeInTheDocument()
     expect(screen.queryByText(/longest run is 30 km/i)).not.toBeInTheDocument()
+    expect(screen.getByRole('group', { name: /which statement is true/i })).toBeVisible()
     expect(container.querySelector('#play').dataset.roundId).not.toBe(firstRoundId)
     expect(container.querySelector('#play')).toHaveFocus()
     expect(scrollIntoView).toHaveBeenCalledWith(expect.objectContaining({ block: 'start' }))

@@ -86,7 +86,7 @@ export default function TruthGame() {
         </div>
 
         <div className="game-board">
-          <div className="game-options-layout">
+          {!isComplete ? (
             <div className="game-options" role="group" aria-label={game.prompt}>
               {game.options.map((option) => {
                 const wasSelected = selectedOptions.has(option.id)
@@ -115,29 +115,27 @@ export default function TruthGame() {
                 )
               })}
             </div>
-            {isComplete && (
-              <button className="play-again" type="button" onClick={restartGame}>
-                <span>Play again</span>
-              </button>
-            )}
-          </div>
+          ) : (
+            <button
+              ref={catRevealRef}
+              className="cat-reveal"
+              type="button"
+              onClick={restartGame}
+              aria-label="Correct. Meet my dangerous apex predator. Play again"
+            >
+              <span className="cat-reveal-message">Correct. Meet my dangerous apex predator.</span>
+              <img
+                src={catImage}
+                alt="Kristina’s Bengal cat relaxing between two computer monitors"
+                width="900"
+                height="1200"
+                loading="lazy"
+              />
+              <span className="cat-replay-overlay" aria-hidden="true">Play again</span>
+            </button>
+          )}
 
           <div className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</div>
-
-          {isComplete && (
-            <div className="cat-reveal">
-              <figure ref={catRevealRef} tabIndex="-1" aria-label="Cat reveal">
-                <img
-                  src={catImage}
-                  alt="Kristina’s Bengal cat relaxing between two computer monitors"
-                  width="900"
-                  height="1200"
-                  loading="lazy"
-                />
-                <figcaption>A dangerous apex predator.</figcaption>
-              </figure>
-            </div>
-          )}
         </div>
       </div>
     </section>
