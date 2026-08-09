@@ -850,19 +850,24 @@
   }
 
   .scroll-invitation {
-    position: static;
+    grid-area: unset;
+    position: absolute;
+    top: 0;
+    left: 50%;
     width: 100vw;
-    margin: 0 0 0 calc(50% - 50vw);
-    transform: none;
+    max-width: none;
+    margin: 0;
+    justify-self: auto;
+    transform: translateX(-50%);
   }
 
   .scroll-invitation-hidden {
-    transform: translateY(0.75rem);
+    transform: translate(-50%, 0.75rem);
   }
 
   .portrait-panel {
     align-self: auto;
-    padding: clamp(3rem, 10vw, 5rem) 0 1.5rem;
+    padding: clamp(4.5rem, 12vw, 6rem) 0 1.5rem;
   }
 
   .portrait-sticky {
@@ -884,7 +889,14 @@
   }
 
   .timeline {
-    --timeline-offset: 1.25rem;
+    --timeline-offset: 1.35rem;
+  }
+
+  .timeline-item::before,
+  .compact-timeline .timeline-item::before {
+    top: calc(2rem + 0.58rem);
+    width: 0.65rem;
+    height: 0.65rem;
   }
 
   .featured-project {
@@ -918,13 +930,15 @@
     white-space: normal;
   }
 
-  .timeline-item::before {
-    width: 0.55rem;
-    height: 0.55rem;
+  .timeline {
+    --timeline-offset: 1.2rem;
   }
 
-  .timeline {
-    --timeline-offset: 0.8rem;
+  .timeline-item::before,
+  .compact-timeline .timeline-item::before {
+    top: calc(2rem + 0.6rem);
+    width: 0.6rem;
+    height: 0.6rem;
   }
 
   .project-summary div {

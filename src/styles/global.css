@@ -450,28 +450,50 @@ h2 {
 
 @media (max-width: 700px) {
   html {
-    scroll-padding-top: 4.5rem;
+    scroll-padding-top: 7rem;
   }
 
   .nav {
-    min-height: 4rem;
-    gap: 0.75rem;
+    min-height: auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "brand . toggle"
+      "links links links";
+    gap: 0.5rem 0.75rem;
+    padding-block: 0.55rem 0.7rem;
+  }
+
+  .wordmark {
+    grid-area: brand;
   }
 
   .nav-actions {
-    flex: 1;
-    gap: 0.65rem;
+    display: contents;
   }
 
   .nav-links {
+    grid-area: links;
+    width: 100%;
     max-width: none;
-    margin-left: auto;
-    gap: 0.45rem 0.9rem;
-    justify-content: flex-end;
+    margin: 0;
+    gap: 0.35rem;
+    justify-content: space-between;
   }
 
   .nav-links a {
     font-size: 0.75rem;
+  }
+
+  .nav-divider {
+    display: none;
+  }
+
+  .theme-toggle {
+    grid-area: toggle;
+    width: 2.25rem;
+    height: 2.25rem;
+    justify-self: end;
   }
 
   .footer-layout {
@@ -490,6 +512,13 @@ h2 {
 
   .copyright {
     text-align: left;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav-links a {
+    font-size: 0.68rem;
+    letter-spacing: -0.01em;
   }
 }
 
