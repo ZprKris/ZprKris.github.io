@@ -77,12 +77,13 @@ export default function TruthGame() {
   }
 
   return (
-    <section ref={sectionRef} className="game-section" id="play" aria-labelledby="game-heading" data-round-id={roundId} tabIndex="-1">
+    <section ref={sectionRef} className="game-section" id="play" aria-labelledby="play-heading" data-round-id={roundId} tabIndex="-1">
       <div className="container game-layout">
         <div className="game-intro">
-          <p className="eyebrow">A small intermission</p>
-          <h2 id="game-heading">{game.heading}</h2>
-          <p>{game.prompt}</p>
+          <h2 id="play-heading" className="section-heading">Play</h2>
+          <p className="game-intro-txt">{game.prompt}</p>
+          {/* <p className="eyebrow">A small intermission</p> */}
+          <h3 id="game-heading">{game.heading}</h3>
         </div>
 
         <div className="game-board">
@@ -131,8 +132,8 @@ export default function TruthGame() {
                 <img
                   src={catImage}
                   alt="Kristina’s Bengal cat relaxing between two computer monitors"
-                  width="1200"
-                  height="1600"
+                  width="400"
+                  height="400"
                   loading="lazy"
                 />
                 <span className="cat-replay-overlay" aria-hidden="true">Play again</span>

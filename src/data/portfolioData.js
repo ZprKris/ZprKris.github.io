@@ -5,7 +5,7 @@ export const portfolioData = {
     name: 'Kristina Zaporozhets',
     role: 'Software Engineer',
     summary:
-      'Software Engineer building infrastructure, backend systems, and AI-powered tools with C/C++, Python, React, and Linux.',
+      'Hi, I’m Kristina. I’ve always been drawn to science and technology - first by a desire to understand how the world works, and now by the opportunity to build meaningful software. I have over two years of software engineering experience, including building AI tools for enterprises and improving core workflows for financial pricing libraries. I especially enjoy developing high-performance software with C and C++, turning ideas into real products with React and Node, and working with passionate teams toward a shared goal.',
   },
   experience: [
     {
@@ -13,8 +13,8 @@ export const portfolioData = {
       role: 'Global Analytics and Financial Engineer Intern',
       dates: 'May 2025–Present',
       description:
-        'Supporting infrastructure and backend systems for financial engineering products, including C++ build systems, regression testing, performance optimization, and internal tooling.',
-      metrics: ['47% faster builds', '6.5× faster regression testing', '4× faster model execution'],
+        'Worked as part of the Infrastructure team, where I improved build, execution, and regression-test performance for a quantitative pricing library, modernized its core components using newer C++ standards, and object-oriented design practices and developed ad hoc data visualization applications.',
+      metrics: ['1.9× faster builds', '6.5× faster regression testing', '4× faster model execution'],
     },
     {
       company: 'AMD Canada and Seneca Polytechnic',
@@ -52,11 +52,11 @@ export const portfolioData = {
       imageWidth: 1829,
       imageHeight: 884,
       tagline: 'No more shuttle-bus surprises.',
-      problem: 'Service changes can turn a routine TTC trip into an unexpected delay.',
-      solution: 'Email alerts for service changes affecting your selected TTC subway stations and schedule.',
+      problem: 'During my internship, TTC disruptions often added hours to my daily commute. I needed a quick way to check alerts for specific stations before heading out so I could plan around delays.',
+      solution: 'An app that lets users select stations and a time window, then receive automated email alerts about disruptions.',
       details:
         'TTC Watch uses Supabase and PostgreSQL to store preferences and disruption data, with Resend and the shuttc.org sending domain for email delivery.',
-      technologies: ['JavaScript', 'HTML', 'CSS', 'Supabase', 'PostgreSQL', 'PL/pgSQL', 'Resend'],
+      technologies: ['React', 'JavaScript', 'HTML', 'CSS', 'Supabase', 'PostgreSQL', 'Resend'],
       liveUrl: 'https://zprkris.github.io/ttc_alerts/',
       sourceUrl: 'https://github.com/ZprKris/ttc_alerts',
     },
@@ -68,13 +68,13 @@ export const portfolioData = {
       {
         id: 1,
         statement: 'I have completed a marathon.',
-        response: 'Not yet—my longest run is 30 km.',
+        response: 'Not yet - my longest run is 30 km.',
         isCorrect: false,
       },
       {
         id: 2,
         statement: 'My GPA is 3.8.',
-        response: 'Wrong—it’s a full 4.0!',
+        response: 'Wrong - it’s a full 4.0!',
         isCorrect: false,
       },
       {

@@ -6,7 +6,9 @@ const links = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export default function Navigation() {
+export default function Navigation({ theme, setTheme }) {
+  const isDark = theme === 'dark'
+
   return (
     <header className="site-header">
       <nav className="nav container" aria-label="Main navigation">
@@ -20,6 +22,14 @@ export default function Navigation() {
             </li>
           ))}
         </ul>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={() => setTheme(isDark ? 'light' : 'dark')}
+          aria-pressed={isDark}
+        >
+          {isDark ? 'Light mode' : 'Night mode'}
+        </button>
       </nav>
     </header>
   )

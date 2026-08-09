@@ -9,12 +9,12 @@ export default function PortraitPanel() {
             className="portrait-image"
             src={profileImage}
             alt="Kristina Zaporozhets in professional attire"
-            width="1672"
-            height="941"
+            width="1772"
+            height="1041"
             fetchPriority="high"
           />
         </div>
-        <p className="portrait-note"><span aria-hidden="true" /> Toronto, Canada</p>
+        {/* <p className="portrait-note"><span aria-hidden="true" /> Toronto, Canada</p> */}
       </div>
     </aside>
   )

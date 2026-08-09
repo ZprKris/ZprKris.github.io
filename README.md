@@ -1,4 +1,4 @@
-# Kristina Zaporozhets — Portfolio
+# Kristina Zaporozhets - Portfolio
 
 Personal portfolio for Kristina Zaporozhets, built with React and Vite and hosted at [zprkris.github.io](https://zprkris.github.io).
 
