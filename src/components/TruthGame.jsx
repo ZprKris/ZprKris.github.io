@@ -116,23 +116,28 @@ export default function TruthGame() {
               })}
             </div>
           ) : (
-            <button
-              ref={catRevealRef}
-              className="cat-reveal"
-              type="button"
-              onClick={restartGame}
-              aria-label="Correct. Meet my dangerous apex predator. Play again"
-            >
-              <span className="cat-reveal-message">Correct. Meet my dangerous apex predator.</span>
-              <img
-                src={catImage}
-                alt="Kristina’s Bengal cat relaxing between two computer monitors"
-                width="900"
-                height="1200"
-                loading="lazy"
-              />
-              <span className="cat-replay-overlay" aria-hidden="true">Play again</span>
-            </button>
+            <div className="cat-reveal">
+              <p className="option-response cat-reveal-message" id="cat-reveal-message">
+                Correct. Meet my dangerous apex predator.
+              </p>
+              <button
+                ref={catRevealRef}
+                className="cat-reveal-trigger"
+                type="button"
+                onClick={restartGame}
+                aria-label="Play again"
+                aria-describedby="cat-reveal-message"
+              >
+                <img
+                  src={catImage}
+                  alt="Kristina’s Bengal cat relaxing between two computer monitors"
+                  width="1200"
+                  height="1600"
+                  loading="lazy"
+                />
+                <span className="cat-replay-overlay" aria-hidden="true">Play again</span>
+              </button>
+            </div>
           )}
 
           <div className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</div>

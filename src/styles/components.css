@@ -511,42 +511,34 @@
 }
 
 .cat-reveal {
-  position: relative;
   width: 100%;
-  min-height: 22rem;
+  margin: 0;
+  animation: cat-appears 450ms ease both;
+}
+
+.cat-reveal-message {
+  margin-top: 0;
+  margin-bottom: 0.85rem;
+}
+
+.cat-reveal-trigger {
+  position: relative;
+  width: min(100%, 20rem);
   display: block;
   overflow: hidden;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   color: var(--background);
-  text-align: left;
   background: var(--primary-green);
   border: 1px solid var(--primary-green);
   border-radius: 1rem;
   cursor: pointer;
-  animation: cat-appears 450ms ease both;
 }
 
-.cat-reveal img {
+.cat-reveal-trigger img {
   width: 100%;
-  height: clamp(22rem, 45vw, 32rem);
-  margin-left: 0 !important;
-  object-fit: cover;
+  height: auto;
   border-radius: inherit;
-}
-
-.cat-reveal-message {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  right: 0;
-  left: 0;
-  padding: 1rem 1.25rem;
-  color: var(--background);
-  background: rgb(23 61 40 / 86%);
-  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-  font-weight: 750;
-  line-height: 1.45;
 }
 
 .cat-replay-overlay {
@@ -563,8 +555,8 @@
   transition: color 180ms ease, background-color 180ms ease;
 }
 
-.cat-reveal:hover .cat-replay-overlay,
-.cat-reveal:focus-visible .cat-replay-overlay {
+.cat-reveal-trigger:hover .cat-replay-overlay,
+.cat-reveal-trigger:focus-visible .cat-replay-overlay {
   color: var(--background);
   background: rgb(39 87 59 / 72%);
 }
@@ -678,8 +670,8 @@
     margin-left: 3.25rem;
   }
 
-  .cat-reveal img {
-    height: min(125vw, 30rem);
+  .cat-reveal-trigger {
+    width: min(82vw, 20rem);
   }
 }
 

@@ -47,7 +47,7 @@ describe('TruthGame', () => {
 
     expect(screen.queryByRole('group', { name: /which statement is true/i })).not.toBeInTheDocument()
     expect(screen.getAllByText('Correct. Meet my dangerous apex predator.')[0]).toBeVisible()
-    expect(screen.getByRole('button', { name: /correct.*play again/i })).toHaveFocus()
+    expect(screen.getByRole('button', { name: /play again/i })).toHaveFocus()
     expect(screen.getByText('Play again')).toBeInTheDocument()
     expect(scrollIntoView).toHaveBeenCalledWith(expect.objectContaining({ block: 'center' }))
   })
@@ -82,7 +82,7 @@ describe('TruthGame', () => {
 
     await user.click(screen.getByRole('button', { name: /cat has a cheetah coat/i }))
     scrollIntoView.mockClear()
-    await user.click(screen.getByRole('button', { name: /correct.*play again/i }))
+    await user.click(screen.getByRole('button', { name: /play again/i }))
 
     expect(screen.queryByRole('img', { name: /bengal cat/i })).not.toBeInTheDocument()
     expect(screen.queryByText(/longest run is 30 km/i)).not.toBeInTheDocument()
